@@ -21,33 +21,24 @@ public partial class SliderRgbPage : ContentPage
         label = new Label
         {
             Text = "",
-            BackgroundColor = Colors.Transparent,
-            WidthRequest = 120,
-            HeightRequest = 60
         };
 
         labelR = new Label
         {
             Text = "",
             BackgroundColor = Colors.Transparent,
-            WidthRequest = 60,
-            HeightRequest = 60
         };
 
         labelG = new Label
         {
             Text = "",
             BackgroundColor = Colors.Transparent,
-            WidthRequest = 60,
-            HeightRequest = 60
         };
 
         labelB = new Label
         {
             Text = "",
             BackgroundColor = Colors.Transparent,
-            WidthRequest = 60,
-            HeightRequest = 60
         };
 
         slider1 = new Slider
@@ -101,19 +92,14 @@ public partial class SliderRgbPage : ContentPage
         stepper.ValueChanged += Stepper_Size;
         juhuslik = new Button
         {
-            Text = "Suvaline värv",
             FontSize = 28,
             FontFamily = "Luffio",
-            TextColor = Colors.Black,
-            BackgroundColor = Colors.GreenYellow,
             CornerRadius = 10,
             HeightRequest = 50,
             WidthRequest = 200
         };
 
         juhuslik.Clicked += juhuslikVarv;
-        al = new AbsoluteLayout { Children = { labelR, slider1,labelG,slider2,labelB,slider3,label,stepper,juhuslik } };
-        List<View> controls = new List<View> { labelR, slider1,labelG,slider2,labelB,slider3,label,stepper,juhuslik };
         for (int i = 0; i < controls.Count; i++)
         {
             double yKoht = 0.1 + i * 0.1;

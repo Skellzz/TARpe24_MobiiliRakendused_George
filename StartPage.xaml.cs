@@ -4,11 +4,12 @@ public partial class StartPage : ContentPage
 {
 	public List<ContentPage> lehed = new List<ContentPage>() { new TextPage(), new FigurePage(), new ValgusfoorPage(), new DateTimePage(), new StepperSliderPage(), new SliderRgbPage(),new LumememmPage() };
 	public List<string> tekstid = new List<string> { "TextPage", "FigurePage","ValgusfoorPage","DateTimePage","StepperSliderPage","SliderRgbPage","Lumememmpage" };
+
 	ScrollView sv;
 	VerticalStackLayout vst;
 	public StartPage()
 	{
-		//InitializeComponent();
+
 		Title = "Avaleht";
 		vst = new VerticalStackLayout { BackgroundColor = Color.FromRgb(255, 105, 255) };
 		for (int i = 0; i < tekstid.Count; i++)
