@@ -6,10 +6,13 @@ public partial class SliderRgbPage : ContentPage
     Label labelR;
     Label labelG;
     Label labelB;
+
     Stepper stepper;
+
     Slider slider1;
     Slider slider2;
     Slider slider3;
+
     Button juhuslik;
     Random rnd = new Random();
     AbsoluteLayout al;
@@ -18,27 +21,26 @@ public partial class SliderRgbPage : ContentPage
         label = new Label
         {
             Text = "",
-            BackgroundColor = Colors.LightGray,
-            WidthRequest = 100
         };
+
         labelR = new Label
         {
             Text = "",
             BackgroundColor = Colors.Transparent,
-            WidthRequest = 50
         };
+
         labelG = new Label
         {
             Text = "",
             BackgroundColor = Colors.Transparent,
-            WidthRequest = 50
         };
+
         labelB = new Label
         {
             Text = "",
             BackgroundColor = Colors.Transparent,
-            WidthRequest = 50
         };
+
         slider1 = new Slider
         {
             Minimum = 0,
@@ -50,6 +52,7 @@ public partial class SliderRgbPage : ContentPage
             ThumbColor = Colors.Gray,
             WidthRequest = 300,
         };
+
         slider2 = new Slider
         {
             Minimum = 0,
@@ -61,6 +64,7 @@ public partial class SliderRgbPage : ContentPage
             ThumbColor = Colors.Gray,
             WidthRequest = 300,
         };
+
         slider3 = new Slider
         {
             Minimum = 0,
@@ -72,6 +76,7 @@ public partial class SliderRgbPage : ContentPage
             ThumbColor = Colors.Gray,
             WidthRequest = 300,
         };
+
         slider1.ValueChanged += Slider_Color;
         slider2.ValueChanged += Slider_Color;
         slider3.ValueChanged += Slider_Color;
@@ -83,21 +88,18 @@ public partial class SliderRgbPage : ContentPage
             Value = 50,
             HorizontalOptions = LayoutOptions.Center
         };
+
         stepper.ValueChanged += Stepper_Size;
         juhuslik = new Button
         {
-            Text = "Juhuslik värv",
             FontSize = 28,
             FontFamily = "Luffio",
-            TextColor = Colors.Chocolate,
-            BackgroundColor = Colors.Beige,
             CornerRadius = 10,
             HeightRequest = 50,
             WidthRequest = 200
         };
+
         juhuslik.Clicked += juhuslikVarv;
-        al = new AbsoluteLayout { Children = { label,labelR, slider1,labelG,slider2,labelB,slider3,stepper,juhuslik } };
-        List<View> controls = new List<View> { label,labelR, slider1,labelG,slider2,labelB,slider3,stepper,juhuslik };
         for (int i = 0; i < controls.Count; i++)
         {
             double yKoht = 0.1 + i * 0.1;

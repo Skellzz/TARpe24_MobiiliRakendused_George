@@ -7,15 +7,28 @@ public partial class ValgusfoorPage : ContentPage
     BoxView boxView1;
 	BoxView boxView2;
 	BoxView boxView3;
+
     Button sisse;
     Button valja;
+
     VerticalStackLayout vsl;
     Label label;
+
     bool bool1 = false;
     public ValgusfoorPage()
 	{
         label = new Label
         {
+
+            Text = "Lülita foor sisse",
+            FontSize = 30,
+            FontFamily = "Luffio",
+            TextColor = Colors.Black,
+        };
+
+        boxView1 = new BoxView
+        {
+            Color = Color.FromRgb(0, 0, 0),
             Text = "Lülita esmalt foor sisse",
             FontSize = 28,
             FontFamily = "Luffio",
@@ -40,6 +53,7 @@ public partial class ValgusfoorPage : ContentPage
             BackgroundColor = Color.FromRgba(0, 0, 0, 0),
             CornerRadius = 150,
         };
+
         boxView3 = new BoxView
         {
             Color = Color.FromRgb(128, 128, 128),
@@ -67,7 +81,7 @@ public partial class ValgusfoorPage : ContentPage
         {
             if (bool1 == true)
             {
-                label.Text = "Valmistu";
+                label.Text = "Oota";
                 boxView1.Color = Color.FromRgb(128, 128, 128);
                 boxView2.Color = Color.FromRgb(255, 255, 0);
                 boxView3.Color = Color.FromRgb(128, 128, 128);
@@ -86,19 +100,13 @@ public partial class ValgusfoorPage : ContentPage
             }
         };
 
-
-
-
-
-
-
         sisse = new Button
         {
             Text = "Sisse",
             FontSize = 28,
             FontFamily = "Luffio",
-            TextColor = Colors.Chocolate,
-            BackgroundColor = Colors.Beige,
+            TextColor = Colors.Black,
+            BackgroundColor = Colors.GreenYellow,
             CornerRadius = 10,
             HeightRequest = 50,
         };
@@ -107,8 +115,8 @@ public partial class ValgusfoorPage : ContentPage
             Text="Välja",
             FontSize = 28,
             FontFamily = "Luffio",
-            TextColor = Colors.Chocolate,
-            BackgroundColor = Colors.Beige,
+            TextColor = Colors.Black,
+            BackgroundColor = Colors.GreenYellow,
             CornerRadius = 10,
             HeightRequest = 50,
         };
@@ -137,8 +145,8 @@ public partial class ValgusfoorPage : ContentPage
     {
         bool1 = false;
         label.Text = "Lülita esmalt foor sisse";
-        boxView1.Color = Color.FromRgb(128,128,128);
-        boxView2.Color = Color.FromRgb(128,128,128);
-        boxView3.Color = Color.FromRgb(128,128,128);
+        boxView1.Color = Color.FromRgb(0,0,0);
+        boxView2.Color = Color.FromRgb(0,0,0);
+        boxView3.Color = Color.FromRgb(0,0,0);
     }
 }
