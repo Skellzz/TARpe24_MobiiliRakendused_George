@@ -1,4 +1,4 @@
-using Microsoft.Maui;
+Ôªøusing Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.PlatformConfiguration.GTKSpecific;
 using BoxView = Microsoft.Maui.Controls.BoxView;
@@ -11,28 +11,28 @@ public partial class LumememmPage : ContentPage
     Label sulamisKiirusLabel;
     BoxView amber;
     BoxView pall1;
-	BoxView pall2;
-	BoxView pall3;
-	Picker picker;
+    BoxView pall2;
+    BoxView pall3;
+    Picker picker;
     Button tegevus;
     Slider heledus;
     Stepper kiirus;
     uint sulamisKiirus;
     Random rnd = new Random();
-	VerticalStackLayout vsl;
+    VerticalStackLayout vsl;
     public LumememmPage()
-	{
+    {
         sulamisKiirusLabel = new Label
         {
-            Text="..."
+            Text = "..."
         };
         valitudTegevus = new Label
         {
-            Text="..."
+            Text = "..."
         };
         amber = new BoxView
         {
-            Color = Color.FromRgb(150,150,150),
+            Color = Color.FromRgb(150, 150, 150),
             WidthRequest = 50,
             HeightRequest = 50,
             HorizontalOptions = LayoutOptions.Center
@@ -69,18 +69,18 @@ public partial class LumememmPage : ContentPage
         };
         picker = new Picker { Title = "Vali tegevus" };
         picker.Items.Add("Peida");
-        picker.Items.Add("N‰ita");
-        picker.Items.Add("Muuda v‰rvi");
-        picker.Items.Add("Sulata");
+        picker.Items.Add("N√§ita");
+        picker.Items.Add("Muuda v√§rvi");
+        picker.Items.Add("Haihtu");
         picker.Items.Add("Tantsi");
 
         tegevus = new Button
         {
-            Text = "K‰ivita tegevus",
+            Text = "K√§ivita",
             FontSize = 28,
             FontFamily = "Luffio",
-            TextColor = Colors.Chocolate,
-            BackgroundColor = Colors.Beige,
+            TextColor = Colors.Black,
+            BackgroundColor = Colors.GreenYellow,
             CornerRadius = 10,
             HeightRequest = 50,
             WidthRequest = 200
@@ -116,15 +116,15 @@ public partial class LumememmPage : ContentPage
         {
             Padding = 20,
             Spacing = 0,
-            Children = { valitudTegevus,amber,pall1,pall2,pall3,picker,tegevus,heledus,kiirus, sulamisKiirusLabel },
+            Children = { valitudTegevus, amber, pall1, pall2, pall3, picker, tegevus, heledus, kiirus, sulamisKiirusLabel },
             HorizontalOptions = LayoutOptions.Center
         };
         Content = vsl;
     }
     private void Kiirus(object? sender, ValueChangedEventArgs e)
     {
-        kiirus.Value = sulamisKiirus;
-        sulamisKiirusLabel.Text ="Sulamis kiirus: "+ Convert.ToString(sulamisKiirus);
+        sulamisKiirus = (uint)e.NewValue;
+        sulamisKiirusLabel.Text = "Sulamis kiirus: " + sulamisKiirus;
     }
 
     private async void Tegevus(object? sender, EventArgs e)
@@ -142,7 +142,7 @@ public partial class LumememmPage : ContentPage
             pall1.Opacity = 1;
             pall2.Opacity = 1;
             pall3.Opacity = 1;
-            valitudTegevus.Text = "N‰ita";
+            valitudTegevus.Text = "N√§ita";
         }
         else if (selectedIndex == 2)
         {
@@ -152,43 +152,43 @@ public partial class LumememmPage : ContentPage
             pall1.Color = Color.FromRgb(r, g, b);
             pall2.Color = Color.FromRgb(r, g, b);
             pall3.Color = Color.FromRgb(r, g, b);
-            valitudTegevus.Text = "Muuda v‰rvi";
+            valitudTegevus.Text = "Muuda v√§rvi";
 
         }
         else if (selectedIndex == 3)
         {
-            pall1.FadeToAsync(0,sulamisKiirus);
-            pall2.FadeToAsync(0,sulamisKiirus);
-            pall3.FadeToAsync(0,sulamisKiirus);
-            valitudTegevus.Text = "Sulata";
+            pall1.FadeToAsync(0, sulamisKiirus);
+            pall2.FadeToAsync(0, sulamisKiirus);
+            pall3.FadeToAsync(0, sulamisKiirus);
+            valitudTegevus.Text = "Kaota";
         }
         else if (selectedIndex == 4)
         {
             await AnimateAsync();
         }
-        }
-        async Task AnimateAsync()
-        {
-            await Task.WhenAll(
-                amber.TranslateToAsync(40, 0, 250),
-                pall1.TranslateToAsync(40, 0, 250),
-                pall2.TranslateToAsync(40, 0, 250),
-                pall3.TranslateToAsync(40, 0, 250)
-            );
+    }
+    async Task AnimateAsync()
+    {
+        await Task.WhenAll(
+            amber.TranslateToAsync(40, 0, 250),
+            pall1.TranslateToAsync(40, 0, 250),
+            pall2.TranslateToAsync(40, 0, 250),
+            pall3.TranslateToAsync(40, 0, 250)
+        );
 
-            await Task.WhenAll(
-                amber.TranslateToAsync(0, 0, 250),
-                pall1.TranslateToAsync(0, 0, 250),
-                pall2.TranslateToAsync(0, 0, 250),
-                pall3.TranslateToAsync(0, 0, 250)
-            );
-        }
+        await Task.WhenAll(
+            amber.TranslateToAsync(0, 0, 250),
+            pall1.TranslateToAsync(0, 0, 250),
+            pall2.TranslateToAsync(0, 0, 250),
+            pall3.TranslateToAsync(0, 0, 250)
+        );
+    }
     private void Heledus(object? sender, ValueChangedEventArgs e)
     {
-        double heledus2 = heledus.Value / 100;
-        
-        heledus2 = pall1.Opacity;
-        heledus2 = pall2.Opacity;
-        heledus2 = pall3.Opacity;
+        double heledus2 = e.NewValue / 100;
+
+        pall1.Opacity = heledus2;
+        pall2.Opacity = heledus2;
+        pall3.Opacity = heledus2;
     }
-    }
+}
