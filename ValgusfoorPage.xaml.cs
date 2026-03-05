@@ -25,15 +25,6 @@ public partial class ValgusfoorPage : ContentPage
             FontFamily = "Luffio",
             TextColor = Colors.Black,
         };
-
-        boxView1 = new BoxView
-        {
-            Color = Color.FromRgb(0, 0, 0),
-            Text = "Lülita esmalt foor sisse",
-            FontSize = 28,
-            FontFamily = "Luffio",
-            TextColor = Colors.Chocolate,
-        };
         boxView1 = new BoxView
         {
             Color = Color.FromRgb(128, 128, 128),

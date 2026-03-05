@@ -6,41 +6,34 @@ public partial class SliderRgbPage : ContentPage
     Label labelR;
     Label labelG;
     Label labelB;
-
     Stepper stepper;
-
     Slider slider1;
     Slider slider2;
     Slider slider3;
-
     Button juhuslik;
     Random rnd = new Random();
     AbsoluteLayout al;
     public SliderRgbPage()
-	{
+    {
         label = new Label
         {
             Text = "",
         };
-
         labelR = new Label
         {
             Text = "",
             BackgroundColor = Colors.Transparent,
         };
-
         labelG = new Label
         {
             Text = "",
             BackgroundColor = Colors.Transparent,
         };
-
         labelB = new Label
         {
             Text = "",
             BackgroundColor = Colors.Transparent,
         };
-
         slider1 = new Slider
         {
             Minimum = 0,
@@ -52,7 +45,6 @@ public partial class SliderRgbPage : ContentPage
             ThumbColor = Colors.Gray,
             WidthRequest = 300,
         };
-
         slider2 = new Slider
         {
             Minimum = 0,
@@ -64,7 +56,6 @@ public partial class SliderRgbPage : ContentPage
             ThumbColor = Colors.Gray,
             WidthRequest = 300,
         };
-
         slider3 = new Slider
         {
             Minimum = 0,
@@ -76,7 +67,6 @@ public partial class SliderRgbPage : ContentPage
             ThumbColor = Colors.Gray,
             WidthRequest = 300,
         };
-
         slider1.ValueChanged += Slider_Color;
         slider2.ValueChanged += Slider_Color;
         slider3.ValueChanged += Slider_Color;
@@ -88,7 +78,6 @@ public partial class SliderRgbPage : ContentPage
             Value = 50,
             HorizontalOptions = LayoutOptions.Center
         };
-
         stepper.ValueChanged += Stepper_Size;
         juhuslik = new Button
         {
@@ -98,8 +87,15 @@ public partial class SliderRgbPage : ContentPage
             HeightRequest = 50,
             WidthRequest = 200
         };
-
         juhuslik.Clicked += juhuslikVarv;
+
+        al = new AbsoluteLayout();
+
+        var controls = new List<View> { label, labelR, labelG, labelB, slider1, slider2, slider3, stepper, juhuslik };
+
+        foreach (var control in controls)
+            al.Children.Add(control);
+
         for (int i = 0; i < controls.Count; i++)
         {
             double yKoht = 0.1 + i * 0.1;
@@ -110,9 +106,9 @@ public partial class SliderRgbPage : ContentPage
     }
     private void Slider_Color(object? sender, ValueChangedEventArgs e)
     {
-        double r =slider1.Value / 255.0;
-        double g =slider2.Value / 255.0;
-        double b =slider3.Value / 255.0;
+        double r = slider1.Value / 255.0;
+        double g = slider2.Value / 255.0;
+        double b = slider3.Value / 255.0;
         label.BackgroundColor = Color.FromRgb(r, g, b);
         labelR.BackgroundColor = Color.FromRgb(r, 0, 0);
         labelG.BackgroundColor = Color.FromRgb(0, g, 0);
@@ -120,7 +116,7 @@ public partial class SliderRgbPage : ContentPage
     }
     private void Stepper_Size(object? sender, ValueChangedEventArgs e)
     {
-       double size = stepper.Value;
+        double size = stepper.Value;
         label.WidthRequest = size;
     }
     private void juhuslikVarv(object? sender, EventArgs e)
