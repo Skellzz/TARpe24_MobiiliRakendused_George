@@ -7,8 +7,6 @@ public partial class Popupaknad : ContentPage
 {
     public Popupaknad()
     {
-
-        // UUS NUPP: Korrutustabeli test
         Button mathTestButton = new Button
         {
             Text = "Alusta korrutustabeli testi",
@@ -35,18 +33,18 @@ public partial class Popupaknad : ContentPage
 
         for (int i = 1; i <= kusimusteArv; i++)
         {
-            int arv1 = random.Next(1, 11); // Arvud 1-10
+            int arv1 = random.Next(1, 11); 
             int arv2 = random.Next(1, 11);
             int oigeVastus = arv1 * arv2;
 
-            // Küsime kasutajalt vastust
+          
             string vastus = await DisplayPromptAsync(
                 $"Küsimus {i}/{kusimusteArv}",
                 $"Palju on {arv1} x {arv2}?",
                 initialValue: "",
                 keyboard: Keyboard.Numeric);
 
-            // Kontrollime, kas vastus on korrektne
+        
             if (int.TryParse(vastus, out int kasutajaVastus))
             {
                 if (kasutajaVastus == oigeVastus)
