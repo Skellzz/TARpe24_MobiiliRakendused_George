@@ -5,15 +5,15 @@ namespace Naidis_TARpe24;
 
 public partial class TripsTrapsTrull : ContentPage
 {
-    private string[,] manguväli = new string[3, 3];
-    private bool xOnKäigul = true;
-    private int käikeTehtud = 0;
-    private Grid ruudustik;
-    private Label staatuseLabel;
+    private string[,] box = new string[3, 3];
+    private bool Xplayer = true;
+    private int MovesMade = 0;
+    private Grid cube;
+    private Label StateLabel;
 
     public TripsTrapsTrull()
     {
-        staatuseLabel = new Label
+        StateLabel = new Label
         {
             Text = "Mängija X kord",
             HorizontalOptions = LayoutOptions.Center,
@@ -21,7 +21,7 @@ public partial class TripsTrapsTrull : ContentPage
             Margin = new Thickness(0, 20, 0, 10)
         };
 
-        ruudustik = new Grid
+        cube = new Grid
         {
             Padding = 10,
             ColumnSpacing = 8,
@@ -34,8 +34,8 @@ public partial class TripsTrapsTrull : ContentPage
 
         for (int i = 0; i < 3; i++)
         {
-            ruudustik.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
-            ruudustik.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
+            cube.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+            cube.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
         }
 
         Button uusMangBtn = new Button
@@ -56,7 +56,7 @@ public partial class TripsTrapsTrull : ContentPage
 
         Content = new VerticalStackLayout
         {
-            Children = { staatuseLabel, ruudustik, uusMangBtn, kesAlustabBtn }
+            Children = { StateLabel, cube, uusMangBtn, kesAlustabBtn }
         };
 
        
@@ -65,11 +65,11 @@ public partial class TripsTrapsTrull : ContentPage
 
     private void AlgistaLaud()
     {
-        ruudustik.Children.Clear();
-        manguväli = new string[3, 3];
-        käikeTehtud = 0;
-        xOnKäigul = true;
-        staatuseLabel.Text = "Mängija X kord";
+        cube.Children.Clear();
+        box = new string[3, 3];
+        MovesMade = 0;
+        Xplayer = true;
+        StateLabel.Text = "Mängija X kord";
 
         for (int r = 0; r < 3; r++)
         {
@@ -79,14 +79,14 @@ public partial class TripsTrapsTrull : ContentPage
                 {
                     Text = "",
                     FontSize = 32,
-                    BackgroundColor = Colors.LightGray
+                    BackgroundColor = Colors.Black
                 };
 
                 int rida = r;
                 int veerg = c;
                 ruut.Clicked += (s, e) => RuuduVajutus(ruut, rida, veerg);
 
-                ruudustik.Add(ruut, veerg, rida);
+                cube.Add(ruut, veerg, rida);
             }
         }
     }
@@ -96,26 +96,26 @@ public partial class TripsTrapsTrull : ContentPage
         // kui ruudus on juba tähis ei juhhtu midagi
         if (!string.IsNullOrEmpty(nupp.Text)) return;
 
-        string sümbol = xOnKäigul ? "X" : "O";
-        nupp.Text = sümbol;
-        nupp.TextColor = xOnKäigul ? Colors.Blue : Colors.Red;
-        manguväli[r, c] = sümbol;
-        käikeTehtud++;
+        string player = Xplayer ? "X" : "O";
+        nupp.Text = player;
+        nupp.TextColor = Xplayer ? Colors.Blue : Colors.Red;
+        box[r, c] = player;
+        MovesMade++;
 
         if (KontrolliVoitu())
         {
-            await DisplayAlert("Võit!", $"Mängija {sümbol} võitis!", "Uus mäng");
+            await DisplayAlert("Võit!", $"Mängija {player} võitis!", "Uus mäng");
             AlgistaLaud();
         }
-        else if (käikeTehtud == 9)
+        else if (MovesMade == 9)
         {
             await DisplayAlert("Viik", "Mäng jäi viiki!", "Uus mäng");
             AlgistaLaud();
         }
         else
         {
-            xOnKäigul = !xOnKäigul;
-            staatuseLabel.Text = $"Mängija {(xOnKäigul ? "X" : "O")} kord";
+            Xplayer = !Xplayer;
+            StateLabel.Text = $"Mängija {(Xplayer ? "X" : "O")} kord";
         }
     }
 
@@ -124,12 +124,12 @@ public partial class TripsTrapsTrull : ContentPage
         for (int i = 0; i < 3; i++)
         {
             //read ja veerud
-            if (OnSama(manguväli[i, 0], manguväli[i, 1], manguväli[i, 2])) return true;
-            if (OnSama(manguväli[0, i], manguväli[1, i], manguväli[2, i])) return true;
+            if (OnSama(box[i, 0], box[i, 1], box[i, 2])) return true;
+            if (OnSama(box[0, i], box[1, i], box[2, i])) return true;
         }
         // diagonaal
-        if (OnSama(manguväli[0, 0], manguväli[1, 1], manguväli[2, 2])) return true;
-        if (OnSama(manguväli[0, 2], manguväli[1, 1], manguväli[2, 0])) return true;
+        if (OnSama(box[0, 0], box[1, 1], box[2, 2])) return true;
+        if (OnSama(box[0, 2], box[1, 1], box[2, 0])) return true;
 
         return false;
     }
@@ -143,9 +143,9 @@ public partial class TripsTrapsTrull : ContentPage
     {
         string valik = await DisplayActionSheet("Kes alustab uut mängu?", "Loobu", null, "Mängija X", "Mängija O", "Suvaline");
 
-        if (valik == "Mängija X") xOnKäigul = true;
-        else if (valik == "Mängija O") xOnKäigul = false;
-        else if (valik == "Suvaline") xOnKäigul = new Random().Next(2) == 0;
+        if (valik == "Mängija X") Xplayer = true;
+        else if (valik == "Mängija O") Xplayer = true;
+        else if (valik == "Suvaline") Xplayer = new Random().Next(2) == 0;
 
         if (valik != "Loobu" && valik != null) AlgistaLaud();
     }
