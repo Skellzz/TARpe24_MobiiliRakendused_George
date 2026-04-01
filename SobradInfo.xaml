@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Naidis_TARpe24.SobradInfo"
+             Title="Sõprade Info">
+
+    <VerticalStackLayout Spacing="15" Padding="20">
+
+        <Label Text="Sisesta kontaktandmed:" 
+               FontSize="18" 
+               HorizontalOptions="Center" />
+
+        <Entry x:Name="email_phone" 
+               Placeholder="Telefoni number või e-mail" 
+               Keyboard="Email" />
+
+        <Button Text="Saada SMS" 
+                Clicked="Saada_sms_Clicked" 
+                BackgroundColor="LightBlue" 
+                TextColor="Black" />
+
+        <Button Text="Saada E-mail" 
+                Clicked="Saada_email_Clicked" 
+                BackgroundColor="LightGreen" 
+                TextColor="Black" />
+
+        <Button Text="Tee Foto" 
+                Clicked="OnTeeFotoClicked" 
+                BackgroundColor="Orange" 
+                TextColor="White" />
+
+        <Image x:Name="profiiliPilt" 
+               HeightRequest="200" 
+               HorizontalOptions="Center" />
+
+    </VerticalStackLayout>
+</ContentPage>
