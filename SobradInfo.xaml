@@ -6,32 +6,35 @@
 
     <VerticalStackLayout Spacing="15" Padding="20">
 
-        <Label Text="Sisesta kontaktandmed:" 
-               FontSize="18" 
-               HorizontalOptions="Center" />
+        <Label Text="Sõnumi saatmine" 
+           FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
 
-        <Entry x:Name="email_phone" 
-               Placeholder="Telefoni number või e-mail" 
-               Keyboard="Email" />
+        <Entry x:Name="entry_phone" 
+           Placeholder="Sisesta telefoni number" 
+           Keyboard="Telephone" />
 
         <Button Text="Saada SMS" 
-                Clicked="Saada_sms_Clicked" 
-                BackgroundColor="LightBlue" 
-                TextColor="Black" />
+            Clicked="Saada_sms_Clicked" 
+            BackgroundColor="Black" TextColor="Red" />
+
+        <BoxView HeightRequest="1" Color="Gray" />
+
+        <Entry x:Name="entry_email" 
+           Placeholder="Sisesta e-maili aadress" 
+           Keyboard="Email" />
 
         <Button Text="Saada E-mail" 
-                Clicked="Saada_email_Clicked" 
-                BackgroundColor="LightGreen" 
-                TextColor="Black" />
+            Clicked="Saada_email_Clicked" 
+            BackgroundColor="Black" TextColor="Red" />
+
+        <BoxView HeightRequest="1" Color="Gray" />
 
         <Button Text="Tee Foto" 
-                Clicked="OnTeeFotoClicked" 
-                BackgroundColor="Orange" 
-                TextColor="White" />
+            Clicked="OnTeeFotoClicked" 
+            BackgroundColor="Black" TextColor="Red" />
 
         <Image x:Name="profiiliPilt" 
-               HeightRequest="200" 
-               HorizontalOptions="Center" />
+           HeightRequest="200" HorizontalOptions="Center" />
 
     </VerticalStackLayout>
 </ContentPage>

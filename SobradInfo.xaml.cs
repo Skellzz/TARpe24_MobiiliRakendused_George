@@ -4,7 +4,6 @@ namespace Naidis_TARpe24;
 
 public partial class SobradInfo : ContentPage
 {
-    // Juhendi järgi tervituste nimekiri
     List<string> tervitused = new List<string>
     {
         "Palju õnne sünnipäevaks!",
@@ -19,32 +18,42 @@ public partial class SobradInfo : ContentPage
         InitializeComponent();
     }
 
-    // Pildil olev SMS-i saatmise meetod (kohandatud MAUI jaoks)
     private async void Saada_sms_Clicked(object sender, EventArgs e)
     {
-        // Eeldame, et sul on XAML-is Entry nimega: email_phone
-        string phone = email_phone.Text;
+      
+        string phone = entry_phone.Text;
+
+        if (string.IsNullOrWhiteSpace(phone))
+        {
+            await DisplayAlert("Hoiatus", "Telefoni number on puudu!", "OK");
+            return;
+        }
 
         var random = new Random();
         string messageBody = tervitused[random.Next(tervitused.Count)];
 
-        if (!string.IsNullOrWhiteSpace(phone))
+        try
         {
-            try
-            {
-                var sms = new SmsMessage(messageBody, phone);
-                await Sms.Default.ComposeAsync(sms);
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Viga", "SMS-i saatmine ebaõnnestus või pole toetatud.", "OK");
-            }
+          
+            var sms = new Microsoft.Maui.ApplicationModel.Communication.SmsMessage(messageBody, phone);
+            await Microsoft.Maui.ApplicationModel.Communication.Sms.Default.ComposeAsync(sms);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Viga", "SMS-i avamine feilis.", "OK");
         }
     }
 
     private async void Saada_email_Clicked(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(email_phone.Text)) return;
+        
+        string emailAddr = entry_email.Text;
+
+        if (string.IsNullOrWhiteSpace(emailAddr))
+        {
+            await DisplayAlert("Hoiatus", "E-mail on puudu!", "OK");
+            return;
+        }
 
         var random = new Random();
         string messageBody = tervitused[random.Next(tervitused.Count)];
@@ -53,24 +62,19 @@ public partial class SobradInfo : ContentPage
         {
             Subject = "Tervitus!",
             Body = messageBody,
-            BodyFormat = EmailBodyFormat.PlainText,
-            To = new List<string> { email_phone.Text }
+            To = new List<string> { emailAddr }
         };
 
         try
-        { 
+        {
             if (Email.Default.IsComposeSupported)
             {
                 await Email.Default.ComposeAsync(email);
             }
-            else
-            {
-                await DisplayAlert("Viga", "E-maili saatmine pole selles seadmes toetatud", "OK");
-            }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Viga", "E-maili avamine ebaõnnestus.", "OK");
+            await DisplayAlert("Viga", "E-maili avamine feilis.", "OK");
         }
     }
 
