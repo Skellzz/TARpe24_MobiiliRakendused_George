@@ -78,7 +78,7 @@ public partial class TripsTrapsTrull : ContentPage
                 Button ruut = new Button
                 {
                     Text = "",
-                    FontSize = 32,
+                    FontSize = 32 ,
                     BackgroundColor = Colors.Black
                 };
 
