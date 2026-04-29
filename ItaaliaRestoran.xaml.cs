@@ -1,3 +1,4 @@
+using Kolm_keelt.Resources.Localization;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
