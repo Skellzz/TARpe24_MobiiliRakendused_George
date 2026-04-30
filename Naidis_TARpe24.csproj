@@ -76,9 +76,6 @@
 	  <MauiXaml Update="FigurePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ItaaliaRestoran.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="LumememmPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

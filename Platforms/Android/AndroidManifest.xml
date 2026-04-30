@@ -2,13 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 	<application android:allowBackup="true" android:supportsRtl="true"></application>
 
-	<!-- Vajalikud load -->
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.SEND_SMS" />
 	<uses-permission android:name="android.permission.CAMERA" />
-
-	<!-- Kõik päringud peavad olema ÜHE queries bloki sees -->
 	<queries>
 		<intent>
 			<action android:name="android.intent.action.VIEW" />
