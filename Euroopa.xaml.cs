@@ -9,7 +9,7 @@ public partial class Euroopa : ContentPage
     {
         public string Nimi { get; set; }
         public string Pealinn { get; set; }
-        public int Rahvaarv { get; set; }
+        public string Rahvaarv { get; set; }
         public string Lipp { get; set; }
     }
     public ObservableCollection<Riik> riigid { get; set; }
@@ -22,11 +22,11 @@ public partial class Euroopa : ContentPage
         
         riigid = new ObservableCollection<Riik>
         {
-            new Riik { Nimi="Eesti", Pealinn="Tallinn", Rahvaarv=1331000, Lipp="eesti.jpg" },
-            new Riik { Nimi="Soome", Pealinn="Helsingi", Rahvaarv=5541000, Lipp="soome.png" },
-            new Riik { Nimi="Poola", Pealinn="Varssavi", Rahvaarv=37950000, Lipp="poola.png" },
-            new Riik { Nimi="Itaalia", Pealinn="Rooma", Rahvaarv=59110000, Lipp="itaalia.png" },
-            new Riik { Nimi="Taani", Pealinn="Kopenhaagen", Rahvaarv=5831000, Lipp="taani.png" }
+            new Riik { Nimi="Eesti", Pealinn="Tallinn", Rahvaarv="1331000", Lipp="eesti.jpg" },
+            new Riik { Nimi="Soome", Pealinn="Helsingi", Rahvaarv="5541000", Lipp="soome.png" },
+            new Riik { Nimi="Poola", Pealinn="Varssavi", Rahvaarv="37950000", Lipp="poola.png" },
+            new Riik { Nimi="Itaalia", Pealinn="Rooma", Rahvaarv="59110000", Lipp="itaalia.png" },
+            new Riik { Nimi="Taani", Pealinn="Kopenhaagen", Rahvaarv="5831000", Lipp="taani.png" }
         };
 
         InitializeUI();
@@ -121,14 +121,14 @@ public partial class Euroopa : ContentPage
         }
         else
         {
-            int.TryParse(entryRahvaarv.Text, out int rahv);
+           // int.TryParse(entryRahvaarv.Text, out int rahv);
             string pildiNimi = string.IsNullOrWhiteSpace(entryLipp.Text) ? "default_flag.png" : entryLipp.Text;
 
             riigid.Add(new Riik
             {
                 Nimi = uusNimi,
                 Pealinn = entryPealinn.Text,
-                Rahvaarv = rahv,
+                Rahvaarv = entryRahvaarv.Text,
                 Lipp = pildiNimi
             });
 
