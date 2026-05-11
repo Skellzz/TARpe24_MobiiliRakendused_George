@@ -79,6 +79,9 @@
 	  <MauiXaml Update="LumememmPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="OOP.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Popupaknad.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
