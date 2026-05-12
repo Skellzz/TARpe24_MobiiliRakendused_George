@@ -60,7 +60,7 @@ public partial class OOP : ContentPage
             AbsoluteLayout.SetLayoutBounds(TargetImage, new Rect(x, y, 100, 100));
 
             TargetImage.Scale = 0.2;
-            await TargetImage.ScaleTo(1.0, 250, Easing.SpringOut);
+            await TargetImage.ScaleTo(3.0, 250, Easing.SpringOut);
         });
     }
 
